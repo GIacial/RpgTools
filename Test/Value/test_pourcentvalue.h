@@ -1,20 +1,21 @@
-#ifndef TEST_INTVALUE_H
-#define TEST_INTVALUE_H
+#ifndef TEST_POURCENTVALUE_H
+#define TEST_POURCENTVALUE_H
+
 
 #include <QObject>
 #include <QtTest/QtTest>
 
-class Test_IntValue : public QObject
+class Test_PourcentValue : public QObject
 {
     Q_OBJECT
 public:
-    explicit Test_IntValue();
-    ~Test_IntValue() throw ();
+    explicit Test_PourcentValue();
+    ~Test_PourcentValue() throw ();
 
 
 private slots:
 
-    void constructeur_object();                //test du constructeur de IntValue
+    void constructeur_object();                //test du constructeur de PourcentValue
     void constructeur_container();             //test du constructeur avec le contener
 
     void copie_constructeur();                 //test de la copie du constructeur
@@ -22,6 +23,7 @@ private slots:
 
     void affectation_object();                //test de l'affectation de l'object
     void affectation_container();               //test de l'affectation avce le container
+
 
     void addition_avec_IntValue();             //test de l'addition avec une int value
     void soustraction_avec_IntValue();          //test de la soustraction avec une int value
@@ -47,4 +49,4 @@ private slots:
 private:
 };
 
-#endif // TEST_INTVALUE_H
+#endif // TEST_POURCENTVALUE_H

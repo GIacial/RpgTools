@@ -1,6 +1,10 @@
+#include <cmath>
+#include <iostream>
+
 #include "test_intvalue.h"
 
 #include "code/Value/intvalue.h"
+#include "code/Value/pourcentvalue.h"
 #include "code/Value/numericvalue.h"
 
 //---------------------------------------------------------------------------------------
@@ -21,12 +25,10 @@ Test_IntValue::~Test_IntValue() throw (){
 //---------------------------------------------------------------------------------------
 void Test_IntValue::constructeur_object(){
     const int valeur = 5;
-    IntValue* value = new IntValue(valeur);
+    IntValue value  (valeur);
 
-    QVERIFY(value != NULL);
-    QVERIFY(value->getValue() == 5);
+    QVERIFY(value.getValue() == valeur);
 
-    delete value;
 }
 //---------------------------------------------------------------------------------------
 void Test_IntValue::constructeur_container(){
@@ -165,4 +167,123 @@ void Test_IntValue::superieurEgal_avecIntValue(){
     QVERIFY((valeur1 >= valeur2) == (int1 >= int2));
     QVERIFY((valeur1 >= valeur3) == (int1 >= int3));
     QVERIFY((valeur2 >= valeur1) == (int2 >= int1));
+}
+//---------------------------------------------------------------------------------------
+void Test_IntValue::addition_avec_PourcentValue(){
+    int int1 = 5;
+    double frequence = 0.25;
+    NumericValue nombre (int1);
+    NumericValue pourcent (frequence);
+
+    QVERIFY((nombre + pourcent) == (pourcent + nombre));
+
+    QVERIFY((nombre + pourcent) == (int)round((1+frequence) * int1));
+}
+//---------------------------------------------------------------------------------------
+void Test_IntValue::soustraction_avec_PourcentValue(){
+    int int1 = 5;
+    double frequence = 0.25;
+    NumericValue nombre (int1);
+    NumericValue pourcent (frequence);
+
+    QVERIFY((nombre - pourcent) == (pourcent - nombre));
+
+
+    QVERIFY((nombre - pourcent) == (int)round((1-frequence) * int1));
+}
+//---------------------------------------------------------------------------------------
+void Test_IntValue::multiplication_avec_PourcentValue(){
+    int int1 = 5;
+    double frequence = 0.25;
+    NumericValue nombre (int1);
+    NumericValue pourcent (frequence);
+    bool ok = false;
+
+    try{
+        (nombre * pourcent) ;
+    }
+    catch(NotSameTypeException& e){
+        ok = true;
+    }
+    QVERIFY(ok);
+}
+//---------------------------------------------------------------------------------------
+void Test_IntValue::division_avec_PourcentValue(){
+    int int1 = 5;
+    double frequence = 0.25;
+    NumericValue nombre (int1);
+    NumericValue pourcent (frequence);
+    bool ok = false;
+
+    try{
+        (nombre / pourcent) ;
+    }
+    catch(NotSameTypeException& e){
+        ok = true;
+    }
+    QVERIFY(ok);
+}
+//---------------------------------------------------------------------------------------
+void Test_IntValue::inferieur_avecPourcentValue(){
+    int int1 = 5;
+    double frequence = 0.25;
+    NumericValue nombre (int1);
+    NumericValue pourcent (frequence);
+    bool ok = false;
+
+    try{
+        (nombre < pourcent) ;
+    }
+    catch(NotSameTypeException& e){
+        ok = true;
+    }
+    QVERIFY(ok);
+}
+//---------------------------------------------------------------------------------------
+void Test_IntValue::inferieurEgal_avecPourcentValue(){
+    int int1 = 5;
+    double frequence = 0.25;
+    NumericValue nombre (int1);
+    NumericValue pourcent (frequence);
+    bool ok = false;
+
+    try{
+        (nombre <= pourcent) ;
+    }
+    catch(NotSameTypeException& e){
+        ok = true;
+    }
+    QVERIFY(ok);
+}
+//---------------------------------------------------------------------------------------
+void Test_IntValue::superieur_avecPourcentValue(){
+    int int1 = 5;
+    double frequence = 0.25;
+    NumericValue nombre (int1);
+    NumericValue pourcent (frequence);
+    bool ok = false;
+
+    try{
+        (nombre > pourcent) ;
+    }
+    catch(NotSameTypeException& e){
+        ok = true;
+    }
+    QVERIFY(ok);
+}
+//---------------------------------------------------------------------------------------
+void Test_IntValue::superieurEgal_avecPourcentValue(){
+    int int1 = 5;
+    double frequence = 0.25;
+    NumericValue nombre (int1);
+    NumericValue pourcent (frequence);
+    bool ok = false;
+
+    try{
+        (nombre >= pourcent) ;
+    }
+    catch(NotSameTypeException& e){
+        ok = true;
+    }
+    QVERIFY(ok);
 }

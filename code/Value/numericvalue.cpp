@@ -1,12 +1,21 @@
 #include "numericvalue.h"
 
 #include "intvalue.h"
+#include "pourcentvalue.h"
 
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Constructeur--------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
 NumericValue::NumericValue(const int val){
     this->constructNumericValue(new IntValue(val));
+}
+//------------------------------------------------------------------------------------------------------
+NumericValue::NumericValue(const int valeur, const int max){
+    this->constructNumericValue(new PourcentValue(valeur , max));
+}
+//------------------------------------------------------------------------------------------------------
+NumericValue::NumericValue(const double frequence){
+    this->constructNumericValue(new PourcentValue(frequence));
 }
 //------------------------------------------------------------------------------------------------------
 NumericValue::NumericValue(const NumericValue &val){
@@ -49,12 +58,12 @@ NumericValue NumericValue::operator -(const NumericValue &val) const{
     return result;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValue NumericValue::operator *(const NumericValue &val) const{
+NumericValue NumericValue::operator *(const NumericValue &val) const throw (NotSameTypeException){
     NumericValue result (this->getValue() * val.getValue());
     return result;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValue NumericValue::operator /(const NumericValue &val) const{
+NumericValue NumericValue::operator /(const NumericValue &val) const throw (NotSameTypeException){
     NumericValue result (this->getValue() / val.getValue());
     return result;
 }
@@ -96,12 +105,22 @@ bool NumericValue::operator == (const int val)const{
     return this->getValue() == second;
 }
 //------------------------------------------------------------------------------------------------------
+bool NumericValue::operator == (const double val)const{
+    PourcentValue second (val);
+    return this->getValue() == second;
+}
+//------------------------------------------------------------------------------------------------------
 bool NumericValue::operator != (const NumericValue& val)const{
     return !(this->getValue() == val.getValue());
 }
 //------------------------------------------------------------------------------------------------------
 bool NumericValue::operator != (const int val)const{
     IntValue second (val);
+    return !(this->getValue() == second);
+}
+//------------------------------------------------------------------------------------------------------
+bool NumericValue::operator != (const double val)const{
+    PourcentValue second (val);
     return !(this->getValue() == second);
 }
 //------------------------------------------------------------------------------------------------------

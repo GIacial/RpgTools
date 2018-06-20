@@ -108,13 +108,13 @@ NumericValueInterface* IntValue::souctraction(const PourcentValue &val) const{
     return new IntValue(std::round(this->getValue()*(1-val.getValue())));
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::multiplication(const PourcentValue &) const{
-    throw NotSameTypeException;
+NumericValueInterface* IntValue::multiplication(const PourcentValue &) const throw (NotSameTypeException){
+    throw NotSameTypeException();
     return NULL;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::division(const PourcentValue &) const{
-    throw NotSameTypeException;
+NumericValueInterface* IntValue::division(const PourcentValue &) const throw (NotSameTypeException){
+    throw NotSameTypeException();
     return NULL;
 }
 //------------------------------------------------------------------------------------------------------
@@ -122,13 +122,13 @@ bool IntValue::egal(const PourcentValue &) const{
     return false;
 }
 //------------------------------------------------------------------------------------------------------
-bool IntValue::inferieur(const PourcentValue &) const{
-    throw NotSameTypeException;
+bool IntValue::inferieur(const PourcentValue &) const throw (NotSameTypeException){
+    throw NotSameTypeException();
     return false;
 }
 //------------------------------------------------------------------------------------------------------
-bool IntValue::superieur(const PourcentValue &) const{
-    throw NotSameTypeException;
+bool IntValue::superieur(const PourcentValue &) const throw (NotSameTypeException){
+    throw NotSameTypeException();
     return false;
 }
 //------------------------------------------------------------------------------------------------------

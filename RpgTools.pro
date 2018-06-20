@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     Test/Value/test_intvalue.cpp \
     code/Exception/exception.cpp \
     code/Exception/notsametypeexception.cpp \
-    code/Value/pourcentvalue.cpp
+    code/Value/pourcentvalue.cpp \
+    Test/Value/test_pourcentvalue.cpp
 
 DISTFILES += \
     CppStructure
@@ -34,4 +35,5 @@ HEADERS += \
     Test/Value/test_intvalue.h \
     code/Exception/exception.h \
     code/Exception/notsametypeexception.h \
-    code/Value/pourcentvalue.h
+    code/Value/pourcentvalue.h \
+    Test/Value/test_pourcentvalue.h

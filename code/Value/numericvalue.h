@@ -8,6 +8,8 @@ class NumericValue                                                              
 public:
     //constructeur
     explicit NumericValue(const int val);                                                                                         //constructeur
+    explicit NumericValue(const int valeur , const int max);
+    explicit NumericValue(const double frequence);
     NumericValue(const NumericValue& val);                                                                        //constructeur de recopie
 
     //destructeur
@@ -28,8 +30,10 @@ public:
 
     bool operator == (const NumericValue& val)const;                                                            //egalité
     bool operator == (const int val)const;                                                                      //egalité
+    bool operator == (const double val)const;                                                                      //egalité
     bool operator != (const NumericValue& val)const;                                                            //diference
     bool operator != (const int val)const;                                                                      //diference
+    bool operator != (const double val)const;                                                                      //diference
 
     bool operator < (const NumericValue& val)const throw (NotSameTypeException);                                //inférieur
     bool operator > (const NumericValue& val)const throw (NotSameTypeException);                                //superieur

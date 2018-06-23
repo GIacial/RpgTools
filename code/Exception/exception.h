@@ -16,7 +16,7 @@ protected:
     Exception(const Exception& e);
 
     //operator
-    Exception& operator = (const Exception& e);
+    virtual Exception& operator = (const Exception& e);
 
 private:
     std::string* msg;

@@ -42,11 +42,11 @@ NumericValueInterface* PourcentValue::operator -(const NumericValueInterface& va
     return val.souctraction(*this);
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* PourcentValue::operator *(const NumericValueInterface& val)const throw (NotSameTypeException){
+NumericValueInterface* PourcentValue::operator *(const NumericValueInterface& val)const throw (NoPossibleOperationException){
     return val.multiplication(*this);
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* PourcentValue::operator /(const NumericValueInterface& val)const throw (NotSameTypeException){
+NumericValueInterface* PourcentValue::operator /(const NumericValueInterface& val)const throw (NoPossibleOperationException){
     return val.division(*this);
 }
 //------------------------------------------------------------------------------------------------------
@@ -54,11 +54,11 @@ bool PourcentValue::operator ==(const NumericValueInterface& val)const{
     return val.egal(*this);
 }
 //------------------------------------------------------------------------------------------------------
-bool PourcentValue::operator < (const NumericValueInterface& val)const throw (NotSameTypeException){
+bool PourcentValue::operator < (const NumericValueInterface& val)const throw (NoPossibleOperationException){
     return val.inferieur(*this);
 }
 //------------------------------------------------------------------------------------------------------
-bool PourcentValue::operator > (const NumericValueInterface& val)const throw (NotSameTypeException){
+bool PourcentValue::operator > (const NumericValueInterface& val)const throw (NoPossibleOperationException){
     return val.superieur(*this);
 }
 //------------------------------------------------------------------------------------------------------
@@ -86,11 +86,11 @@ NumericValueInterface* PourcentValue::souctraction(const IntValue &val) const{
     return val.souctraction(*this);                     //comme pourcent - int
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* PourcentValue::multiplication(const IntValue &val) const throw (NotSameTypeException){
+NumericValueInterface* PourcentValue::multiplication(const IntValue &val) const throw (NoPossibleOperationException){
     return val.multiplication(*this);                     //comme pourcent * int
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* PourcentValue::division(const IntValue &val) const throw (NotSameTypeException){
+NumericValueInterface* PourcentValue::division(const IntValue &val) const throw (NoPossibleOperationException){
     return val.division(*this);                     //comme pourcent / int
 }
 //------------------------------------------------------------------------------------------------------
@@ -98,13 +98,13 @@ bool PourcentValue::egal(const IntValue &) const{
     return false;
 }
 //------------------------------------------------------------------------------------------------------
-bool PourcentValue::inferieur(const IntValue &) const throw (NotSameTypeException){
-    throw NotSameTypeException();
+bool PourcentValue::inferieur(const IntValue &) const throw (NoPossibleOperationException){
+    throw NoPossibleOperationException();
     return false;
 }
 //------------------------------------------------------------------------------------------------------
-bool PourcentValue::superieur(const IntValue &) const throw (NotSameTypeException){
-    throw NotSameTypeException();
+bool PourcentValue::superieur(const IntValue &) const throw (NoPossibleOperationException){
+    throw NoPossibleOperationException();
     return false;
 }
 //------------------------------------------------------------------------------------------------------
@@ -116,11 +116,11 @@ NumericValueInterface* PourcentValue::souctraction(const PourcentValue &val) con
     return new PourcentValue(val.getValue() - this->getValue() );
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* PourcentValue::multiplication(const PourcentValue &val) const throw (NotSameTypeException){
+NumericValueInterface* PourcentValue::multiplication(const PourcentValue &val) const throw (NoPossibleOperationException){
     return new PourcentValue(val.getValue() * this->getValue() );
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* PourcentValue::division(const PourcentValue &val) const throw (NotSameTypeException){
+NumericValueInterface* PourcentValue::division(const PourcentValue &val) const throw (NoPossibleOperationException){
     return new PourcentValue(val.getValue() / this->getValue() );
 }
 //------------------------------------------------------------------------------------------------------
@@ -128,12 +128,12 @@ bool PourcentValue::egal(const PourcentValue &val) const{
     return val.getValue() == this->getValue();
 }
 //------------------------------------------------------------------------------------------------------
-bool PourcentValue::inferieur(const PourcentValue &val) const throw (NotSameTypeException){
+bool PourcentValue::inferieur(const PourcentValue &val) const throw (NoPossibleOperationException){
 
     return val.getValue() < this->getValue();
 }
 //------------------------------------------------------------------------------------------------------
-bool PourcentValue::superieur(const PourcentValue &val) const throw (NotSameTypeException){
+bool PourcentValue::superieur(const PourcentValue &val) const throw (NoPossibleOperationException){
 
     return val.getValue() > this->getValue();
 }

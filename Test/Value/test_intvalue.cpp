@@ -202,7 +202,7 @@ void Test_IntValue::multiplication_avec_PourcentValue(){
     try{
         (nombre * pourcent) ;
     }
-    catch(NotSameTypeException& e){
+    catch(NoPossibleOperationException& e){
         ok = true;
     }
     QVERIFY(ok);
@@ -218,7 +218,7 @@ void Test_IntValue::division_avec_PourcentValue(){
     try{
         (nombre / pourcent) ;
     }
-    catch(NotSameTypeException& e){
+    catch(NoPossibleOperationException& e){
         ok = true;
     }
     QVERIFY(ok);
@@ -234,7 +234,7 @@ void Test_IntValue::inferieur_avecPourcentValue(){
     try{
         (nombre < pourcent) ;
     }
-    catch(NotSameTypeException& e){
+    catch(NoPossibleOperationException& e){
         ok = true;
     }
     QVERIFY(ok);
@@ -250,7 +250,7 @@ void Test_IntValue::inferieurEgal_avecPourcentValue(){
     try{
         (nombre <= pourcent) ;
     }
-    catch(NotSameTypeException& e){
+    catch(NoPossibleOperationException& e){
         ok = true;
     }
     QVERIFY(ok);
@@ -266,7 +266,7 @@ void Test_IntValue::superieur_avecPourcentValue(){
     try{
         (nombre > pourcent) ;
     }
-    catch(NotSameTypeException& e){
+    catch(NoPossibleOperationException& e){
         ok = true;
     }
     QVERIFY(ok);
@@ -282,7 +282,7 @@ void Test_IntValue::superieurEgal_avecPourcentValue(){
     try{
         (nombre >= pourcent) ;
     }
-    catch(NotSameTypeException& e){
+    catch(NoPossibleOperationException& e){
         ok = true;
     }
     QVERIFY(ok);

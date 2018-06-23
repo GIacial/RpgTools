@@ -58,12 +58,12 @@ NumericValue NumericValue::operator -(const NumericValue &val) const{
     return result;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValue NumericValue::operator *(const NumericValue &val) const throw (NotSameTypeException){
+NumericValue NumericValue::operator *(const NumericValue &val) const throw (NoPossibleOperationException){
     NumericValue result (this->getValue() * val.getValue());
     return result;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValue NumericValue::operator /(const NumericValue &val) const throw (NotSameTypeException){
+NumericValue NumericValue::operator /(const NumericValue &val) const throw (NoPossibleOperationException){
     NumericValue result (this->getValue() / val.getValue());
     return result;
 }
@@ -124,19 +124,19 @@ bool NumericValue::operator != (const double val)const{
     return !(this->getValue() == second);
 }
 //------------------------------------------------------------------------------------------------------
-bool NumericValue::operator < (const NumericValue& val)const throw (NotSameTypeException){
+bool NumericValue::operator < (const NumericValue& val)const throw (NoPossibleOperationException){
     return this->getValue() < val.getValue();
 }
 //------------------------------------------------------------------------------------------------------
-bool NumericValue::operator > (const NumericValue& val)const throw (NotSameTypeException){
+bool NumericValue::operator > (const NumericValue& val)const throw (NoPossibleOperationException){
     return this->getValue() > val.getValue();
 }
 //------------------------------------------------------------------------------------------------------
-bool NumericValue::operator <= (const NumericValue& val)const throw (NotSameTypeException){
+bool NumericValue::operator <= (const NumericValue& val)const throw (NoPossibleOperationException){
     return this->getValue() < val.getValue() || this->getValue() == val.getValue();
 }
 //------------------------------------------------------------------------------------------------------
-bool NumericValue::operator >= (const NumericValue& val)const throw (NotSameTypeException){
+bool NumericValue::operator >= (const NumericValue& val)const throw (NoPossibleOperationException){
     return this->getValue() > val.getValue() || this->getValue() == val.getValue();
 }
 //------------------------------------------------------------------------------------------------------

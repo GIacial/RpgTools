@@ -1,142 +1,170 @@
-#include <cmath>
+#include "statistique.h"
 
-#include "intvalue.h"
-#include "pourcentvalue.h"
+#include "../Value/intvalue.h"
 
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Constructeur--------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-IntValue::IntValue(const int val) : NumericValueInterface()
-{
-    this->valeur = new int(val);
+Statistique::Statistique(const std::string nom, const NumericValue &valeurInitial){
+    this->generalConstructeur(nom,valeurInitial);
 }
 //------------------------------------------------------------------------------------------------------
-IntValue::IntValue(const IntValue &val) : NumericValueInterface(val)
-{
-    this->valeur = new int (val.getValue());
+Statistique::Statistique(const std::string nom, const int valeurInitial){
+    this->generalConstructeur(nom,NumericValue(valeurInitial));
+}
+//------------------------------------------------------------------------------------------------------
+Statistique::Statistique(const std::string nom, const double valeurInitial){
+    this->generalConstructeur(nom,NumericValue(valeurInitial));
+}
+//------------------------------------------------------------------------------------------------------
+Statistique::Statistique(const Statistique &stat){
+    this->generalConstructeur(stat.getName(),stat.getValue());
+}
+//------------------------------------------------------------------------------------------------------
+void Statistique::generalConstructeur(const std::string& nom, const NumericValue &valeurInitial){
+    this->nom = new std::string(nom);
+    this->valeur = new NumericValue(valeurInitial);
 }
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Destructeur---------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-IntValue::~IntValue() throw (){
-    if(valeur != nullptr){
+Statistique::~Statistique(){
+    if(nom != NULL){
+        delete nom;
+    }
+    if(valeur != NULL){
         delete valeur;
     }
 }
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Operator------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-IntValue& IntValue::operator =(const IntValue& val){
-    if(this != & val){
-        NumericValueInterface::operator =(val);
-        (*valeur) = val.getValue();
+Statistique& Statistique::operator =(const Statistique& stat){
+    if( this != &stat){
+        (*nom) = stat.getName();
+        (*valeur) = stat.getValue();
     }
-    return * this;
+    return *this;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::operator +(const NumericValueInterface& val) const{
-    return val.addition(*this);
+NumericValue Statistique::operator +(const Statistique& stat)const{
+    return this->getValue() + stat.getValue();
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::operator -(const NumericValueInterface& val) const{
-    return val.souctraction(*this);
+NumericValue Statistique::operator +(const NumericValue& valeur)const{
+    return this->getValue() + valeur;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::operator *(const NumericValueInterface& val) const throw (NoPossibleOperationException){
-    return val.multiplication(*this);
+NumericValue Statistique::operator +(const int nombre) const{
+    const NumericValue number (nombre);
+    return this->getValue() + number;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::operator /(const NumericValueInterface& val) const throw (NoPossibleOperationException){
-    return val.division(*this);
+NumericValue Statistique::operator -(const Statistique& stat)const{
+    return this->getValue() - stat.getValue();
 }
 //------------------------------------------------------------------------------------------------------
-bool IntValue::operator ==(const NumericValueInterface& val) const{
-    return val.egal(*this);
+NumericValue Statistique::operator -(const NumericValue& valeur)const{
+    return this->getValue() - valeur;
 }
 //------------------------------------------------------------------------------------------------------
-bool IntValue::operator <(const NumericValueInterface& val) const throw (NoPossibleOperationException){
-    return val.inferieur(*this);
+NumericValue Statistique::operator -(const int nombre) const{
+    const NumericValue number (nombre);
+    return this->getValue() - number;
 }
 //------------------------------------------------------------------------------------------------------
-bool IntValue::operator >(const NumericValueInterface& val) const throw (NoPossibleOperationException){
-    return val.superieur(*this);
+NumericValue Statistique::operator *(const Statistique& stat)const throw (NoPossibleOperationException){
+    return this->getValue() * stat.getValue();
+}
+//------------------------------------------------------------------------------------------------------
+NumericValue Statistique::operator *(const NumericValue& valeur)const throw (NoPossibleOperationException){
+    return this->getValue() * valeur;
+}
+//------------------------------------------------------------------------------------------------------
+NumericValue Statistique::operator *(const int nombre) const throw (NoPossibleOperationException){
+    const NumericValue number (nombre);
+    return this->getValue() * number;
+}
+//------------------------------------------------------------------------------------------------------
+NumericValue Statistique::operator /(const Statistique& stat)const throw (NoPossibleOperationException){
+    return this->getValue() / stat.getValue();
+}
+//------------------------------------------------------------------------------------------------------
+NumericValue Statistique::operator /(const NumericValue& valeur)const throw (NoPossibleOperationException){
+    return this->getValue() / valeur;
+}
+//------------------------------------------------------------------------------------------------------
+NumericValue Statistique::operator /(const int nombre) const throw (NoPossibleOperationException){
+    const NumericValue number (nombre);
+    return this->getValue() / number;
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator ==(const Statistique& stat) const{
+    return this->getName() == stat.getName() && this->getValue() == stat.getValue();
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator ==(const NumericValue& valeur)const{
+    return this->getValue() == valeur;
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator >(const Statistique& stat) const throw (NoPossibleOperationException){
+    return this->getValue() > stat.getValue();
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator >(const NumericValue& valeur)const throw (NoPossibleOperationException){
+    return this->getValue() > valeur;
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator >=(const Statistique& stat) const throw (NoPossibleOperationException){
+    return this->getValue() >= stat.getValue();
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator >=(const NumericValue& valeur)const throw (NoPossibleOperationException){
+    return this->getValue() >= valeur;
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator <(const Statistique& stat) const throw (NoPossibleOperationException){
+    return this->getValue() < stat.getValue();
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator <(const NumericValue& valeur)const throw (NoPossibleOperationException){
+    return this->getValue() < valeur;
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator <=(const Statistique& stat) const throw (NoPossibleOperationException){
+    return this->getValue() <= stat.getValue();
+}
+//------------------------------------------------------------------------------------------------------
+bool Statistique::operator <=(const NumericValue& valeur)const throw (NoPossibleOperationException){
+    return this->getValue() <= valeur;
 }
 //------------------------------------------------------------------------------------------------------
 //----------------------------------public fonction-----------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::clone()const{
-    return new IntValue(*this);
+std::string Statistique::toString() const{
+    return this->getName() + ":" + this->getValue().toString();
 }
 //------------------------------------------------------------------------------------------------------
-std::string IntValue::toString()const{
-    return std::to_string(this->getValue());
+const std::string& Statistique::getName()const{
+    return *nom;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::addition(const IntValue &val) const{
-    return new IntValue(val.getValue() + this->getValue());
+const NumericValue& Statistique::getValue() const{
+    return * valeur;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::souctraction(const IntValue &val) const{
-    return new IntValue(val.getValue() - this->getValue());
+void Statistique::increaseStat(const NumericValue &valeur){
+    (*(this->valeur)) += valeur;
 }
 //------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::multiplication(const IntValue &val) const throw (NoPossibleOperationException){
-    return new IntValue(val.getValue() * this->getValue());
-}
-//------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::division(const IntValue &val) const throw (NoPossibleOperationException){
-    return new IntValue(val.getValue() / this->getValue());
-}
-//------------------------------------------------------------------------------------------------------
-bool IntValue::egal(const IntValue &val) const{
-    return val.getValue() == this->getValue();
-}
-//------------------------------------------------------------------------------------------------------
-bool IntValue::inferieur(const IntValue &val) const throw(NoPossibleOperationException){
-    return val.getValue() < this->getValue();
-}
-//------------------------------------------------------------------------------------------------------
-bool IntValue::superieur(const IntValue &val) const throw(NoPossibleOperationException){
-    return val.getValue() > this->getValue();
-}
-//------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::addition(const PourcentValue &val) const{
-    return new IntValue(std::round(this->getValue()*(1+val.getValue())));
-}
-//------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::souctraction(const PourcentValue &val) const{
-    return new IntValue(std::round(this->getValue()*(1-val.getValue())));
-}
-//------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::multiplication(const PourcentValue &) const throw (NoPossibleOperationException){
-    throw NoPossibleOperationException();
-    return NULL;
-}
-//------------------------------------------------------------------------------------------------------
-NumericValueInterface* IntValue::division(const PourcentValue &) const throw (NoPossibleOperationException){
-    throw NoPossibleOperationException();
-    return NULL;
-}
-//------------------------------------------------------------------------------------------------------
-bool IntValue::egal(const PourcentValue &) const{
-    return false;
-}
-//------------------------------------------------------------------------------------------------------
-bool IntValue::inferieur(const PourcentValue &) const throw (NoPossibleOperationException){
-    throw NoPossibleOperationException();
-    return false;
-}
-//------------------------------------------------------------------------------------------------------
-bool IntValue::superieur(const PourcentValue &) const throw (NoPossibleOperationException){
-    throw NoPossibleOperationException();
-    return false;
+void Statistique::decreaseStat(const NumericValue &valeur){
+    (*(this->valeur)) -= valeur;
 }
 //------------------------------------------------------------------------------------------------------
 //----------------------------------public getter-------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-const int& IntValue::getValue() const{
-    return *valeur;
-}
+
+
 //------------------------------------------------------------------------------------------------------
 //----------------------------------public setter-------------------------------------------------------
 //------------------------------------------------------------------------------------------------------

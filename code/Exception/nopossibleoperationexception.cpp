@@ -1,27 +1,27 @@
-#include "notsametypeexception.h"
+#include "NoPossibleOperationException.h"
 
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Constructeur--------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-NotSameTypeException::NotSameTypeException() : Exception("Operation Impossible avec les types utilisées")
+NoPossibleOperationException::NoPossibleOperationException() : Exception("Operation Impossible avec les types utilisées")
 {
 
 }
 //------------------------------------------------------------------------------------------------------
-NotSameTypeException::NotSameTypeException(const NotSameTypeException &e) : Exception(e){
+NoPossibleOperationException::NoPossibleOperationException(const NoPossibleOperationException &e) : Exception(e){
 
 }
 
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Destructeur---------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-NotSameTypeException::~NotSameTypeException() throw (){
+NoPossibleOperationException::~NoPossibleOperationException() throw (){
 
 }
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Operator------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-NotSameTypeException& NotSameTypeException::operator =(const NotSameTypeException& e){
+NoPossibleOperationException& NoPossibleOperationException::operator =(const NoPossibleOperationException& e){
     Exception::operator =(e);
     return *this;
 }

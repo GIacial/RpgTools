@@ -21,9 +21,11 @@ SOURCES += main.cpp \
     code/Value/numericvalueinterface.cpp \
     Test/Value/test_intvalue.cpp \
     code/Exception/exception.cpp \
-    code/Exception/notsametypeexception.cpp \
     code/Value/pourcentvalue.cpp \
-    Test/Value/test_pourcentvalue.cpp
+    Test/Value/test_pourcentvalue.cpp \
+    code/Statistique/statistique.cpp \
+    code/Exception/nopossibleoperationexception.cpp \
+    Test/Statistique/test_statistique.cpp
 
 DISTFILES += \
     CppStructure
@@ -34,6 +36,8 @@ HEADERS += \
     code/Value/numericvalueInterface.h \
     Test/Value/test_intvalue.h \
     code/Exception/exception.h \
-    code/Exception/notsametypeexception.h \
     code/Value/pourcentvalue.h \
-    Test/Value/test_pourcentvalue.h
+    Test/Value/test_pourcentvalue.h \
+    code/Statistique/statistique.h \
+    code/Exception/nopossibleoperationexception.h \
+    Test/Statistique/test_statistique.h

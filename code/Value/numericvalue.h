@@ -16,12 +16,12 @@ public:
     virtual ~NumericValue() throw();
 
     //operateur
-    NumericValue& operator = (const NumericValue& val);                                                           //operateur de recopie
+    virtual NumericValue& operator = (const NumericValue& val);                                                           //operateur de recopie
 
     NumericValue  operator + (const NumericValue& val)const;                                                           //addition
     NumericValue  operator - (const NumericValue& val)const;                                                           //soustraction
-    NumericValue  operator * (const NumericValue& val)const throw (NotSameTypeException);                                                           //multiplication
-    NumericValue  operator / (const NumericValue& val)const throw (NotSameTypeException);                                                           //division
+    NumericValue  operator * (const NumericValue& val)const throw (NoPossibleOperationException);                                                           //multiplication
+    NumericValue  operator / (const NumericValue& val)const throw (NoPossibleOperationException);                                                           //division
 
     NumericValue& operator += (const NumericValue& val);                                                           //addition affectation
     NumericValue& operator -= (const NumericValue& val);                                                           //soustraction affectation
@@ -35,11 +35,11 @@ public:
     bool operator != (const int val)const;                                                                      //diference
     bool operator != (const double val)const;                                                                      //diference
 
-    bool operator < (const NumericValue& val)const throw (NotSameTypeException);                                //inférieur
-    bool operator > (const NumericValue& val)const throw (NotSameTypeException);                                //superieur
+    bool operator < (const NumericValue& val)const throw (NoPossibleOperationException);                                //inférieur
+    bool operator > (const NumericValue& val)const throw (NoPossibleOperationException);                                //superieur
 
-    bool operator <= (const NumericValue& val)const throw (NotSameTypeException);                               //inférieur egal
-    bool operator >= (const NumericValue& val)const throw (NotSameTypeException);                               //supérieur egal
+    bool operator <= (const NumericValue& val)const throw (NoPossibleOperationException);                               //inférieur egal
+    bool operator >= (const NumericValue& val)const throw (NoPossibleOperationException);                               //supérieur egal
 
     //fonction
     std::string toString()const;                                                                                //donne la string correspondant à la valeur
@@ -49,7 +49,7 @@ protected:
 private:
     //constructeur fonction
     void constructNumericValue(NumericValueInterface* val);                                                 //constructeur général
-    NumericValue(NumericValueInterface* val);                                                               //constructeur a partir d'un resultat de calcul de NumericValueInterface
+    explicit NumericValue(NumericValueInterface* val);                                                               //constructeur a partir d'un resultat de calcul de NumericValueInterface
 
     //fonction
     const NumericValueInterface& getValue()const;                                                                //donne la valeur de cette valeur numeric

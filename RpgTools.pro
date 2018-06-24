@@ -25,7 +25,12 @@ SOURCES += main.cpp \
     Test/Value/test_pourcentvalue.cpp \
     code/Statistique/statistique.cpp \
     code/Exception/nopossibleoperationexception.cpp \
-    Test/Statistique/test_statistique.cpp
+    Test/Statistique/test_statistique.cpp \
+    code/Statistique/statistiqueminborned.cpp \
+    code/Statistique/statistiqueminbornedwithref.cpp \
+    code/Statistique/statistiqueminbornedconst.cpp \
+    Test/Statistique/test_stat_min_borned_const.cpp \
+    Test/Statistique/test_stat_min_borned_ref.cpp
 
 DISTFILES += \
     CppStructure
@@ -40,4 +45,9 @@ HEADERS += \
     Test/Value/test_pourcentvalue.h \
     code/Statistique/statistique.h \
     code/Exception/nopossibleoperationexception.h \
-    Test/Statistique/test_statistique.h
+    Test/Statistique/test_statistique.h \
+    code/Statistique/statistiqueminborned.h \
+    code/Statistique/statistiqueminbornedwithref.h \
+    code/Statistique/statistiqueminbornedconst.h \
+    Test/Statistique/test_stat_min_borned_const.h \
+    Test/Statistique/test_stat_min_borned_ref.h

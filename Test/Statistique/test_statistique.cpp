@@ -6,7 +6,7 @@ using namespace std ;
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Constructeur--------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-Test_Statistique::Test_Statistique(){
+Test_Statistique::Test_Statistique() : QObject(){
 
 }
 //------------------------------------------------------------------------------------------------------
@@ -32,17 +32,6 @@ void Test_Statistique::test_constructeurCopie(){
     string nom ("stat");
     Statistique ori (nom,valeur);
     Statistique stat (ori);
-
-    QVERIFY(stat.getName() == nom);
-    QVERIFY(stat.getValue() == valeur);
-}
-//------------------------------------------------------------------------------------------------------
-void Test_Statistique::test_operatorCopie(){
-    const NumericValue valeur (5);
-    string nom ("stat");
-    Statistique ori (nom,valeur);
-    Statistique stat ("stat2",78);
-    stat = ori;
 
     QVERIFY(stat.getName() == nom);
     QVERIFY(stat.getValue() == valeur);

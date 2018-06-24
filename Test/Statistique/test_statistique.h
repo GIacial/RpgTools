@@ -16,7 +16,6 @@ signals:
 private slots:
     void test_constructeur();                                       //test du constructeur
     void test_constructeurCopie();                                  //test du constructeur de recopie
-    void test_operatorCopie();                                      //test de l'operateur de recopie
 
     void test_addition_stat();                                      //test de l'addition avec une stat
     void test_addition_valeur();                                    //test de l'addition avec une valeur

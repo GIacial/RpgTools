@@ -19,7 +19,6 @@ public:
     virtual ~Statistique() throw ();
 
     //operateur
-    virtual Statistique& operator = (const Statistique& stat);                          //operateur de recopie
 
     NumericValue operator +(const Statistique& stat)const;                      //addition
     NumericValue operator +(const NumericValue& valeur)const;                   //addition
@@ -56,10 +55,12 @@ public:
     const std::string& getName()const ;                                                //renvoi le nom de la stat
     std::string toString()const;                                                //transforme la stat en string
 
-    virtual void increaseStat(const NumericValue& valeur);                  //augmente la statistique par la valeur
-    virtual void decreaseStat(const NumericValue& valeur);                  //diminue la statistique par la valeur
+    virtual void increaseStat(const NumericValue& valeur) throw (NoPossibleOperationException);                  //augmente la statistique par la valeur
+    virtual void decreaseStat(const NumericValue& valeur) throw (NoPossibleOperationException);                  //diminue la statistique par la valeur
 
 protected:
+    virtual Statistique& operator = (const Statistique& stat);                          //operateur de recopie
+    void setValue(const NumericValue& value);                                           //change la valeur de la stat
 
 private:
     //constructeur

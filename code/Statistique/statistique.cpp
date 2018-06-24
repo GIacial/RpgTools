@@ -153,11 +153,11 @@ const NumericValue& Statistique::getValue() const{
     return * valeur;
 }
 //------------------------------------------------------------------------------------------------------
-void Statistique::increaseStat(const NumericValue &valeur){
+void Statistique::increaseStat(const NumericValue &valeur) throw (NoPossibleOperationException){
     (*(this->valeur)) += valeur;
 }
 //------------------------------------------------------------------------------------------------------
-void Statistique::decreaseStat(const NumericValue &valeur){
+void Statistique::decreaseStat(const NumericValue &valeur) throw (NoPossibleOperationException){
     (*(this->valeur)) -= valeur;
 }
 //------------------------------------------------------------------------------------------------------
@@ -172,7 +172,9 @@ void Statistique::decreaseStat(const NumericValue &valeur){
 //------------------------------------------------------------------------------------------------------
 //----------------------------------protected fonction--------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-
+void Statistique::setValue(const NumericValue &value){
+    (*valeur) = value;
+}
 //------------------------------------------------------------------------------------------------------
 //----------------------------------protected getter----------------------------------------------------
 //------------------------------------------------------------------------------------------------------

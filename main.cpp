@@ -3,6 +3,8 @@
 #include "Test/Statistique/test_statistique.h"
 #include "Test/Statistique/test_stat_min_borned_const.h"
 #include "Test/Statistique/test_stat_min_borned_ref.h"
+#include "Test/Statistique/test_stat_max_borned_const.h"
+#include "Test/Statistique/test_stat_max_borned_ref.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +16,8 @@ int main(int argc, char *argv[])
     Test_Statistique            test_stat;              QTest::qExec(&test_stat,argc,argv);
     Test_stat_min_borned_const  test_minBorneConst;     QTest::qExec(&test_minBorneConst,argc,argv);
     Test_stat_min_borned_ref    test_minBorneRef;       QTest::qExec(&test_minBorneRef,argc,argv);
+    Test_stat_max_borned_const  test_maxBorneConst;     QTest::qExec(&test_maxBorneConst,argc,argv);
+    Test_stat_max_borned_ref  test_maxBorneRef;     QTest::qExec(&test_maxBorneRef,argc,argv);
 
 
     return 0;

@@ -1,82 +1,45 @@
-#include "statistiqueminbornedconst.h"
+#include "statistiquemaxborned.h"
+
 
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Constructeur--------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-void StatistiqueMinBornedConst::generalConstructeur( NumericValue* min){
-    this->minValue = min;
-}
+StatistiqueMaxBorned::StatistiqueMaxBorned(const StatistiqueMaxBorned & stat) : Statistique(stat) {}
 //------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst::StatistiqueMinBornedConst(const StatistiqueMinBornedConst &stat)
-    :StatistiqueMinBorned(stat)
-{
-    this->generalConstructeur(new NumericValue(stat.getMinValue()));
-}
+StatistiqueMaxBorned::StatistiqueMaxBorned(const std::string nom, const NumericValue &valeurInitial)
+    : Statistique(nom,valeurInitial) {}
+
 //------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst::StatistiqueMinBornedConst(const std::string nom, const NumericValue &valeurInitial , const NumericValue& min)
-    : StatistiqueMinBorned(nom,valeurInitial)
-{
-    this->generalConstructeur(new NumericValue(min));
-}
+StatistiqueMaxBorned::StatistiqueMaxBorned(const std::string nom, const int valeurInitial)
+    : Statistique(nom,valeurInitial) {}
 //------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst::StatistiqueMinBornedConst(const std::string nom, const int valeurInitial , const NumericValue& min)
-    : StatistiqueMinBorned(nom,valeurInitial)
-{
-    this->generalConstructeur(new NumericValue(min));
-}
-//------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst::StatistiqueMinBornedConst(const std::string nom, const double valeurInitial , const NumericValue& min)
-    : StatistiqueMinBorned(nom,valeurInitial)
-{
-    this->generalConstructeur(new NumericValue(min));
-}
-//------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst::StatistiqueMinBornedConst(const std::string nom, const NumericValue &valeurInitial , const int min)
-    : StatistiqueMinBorned(nom,valeurInitial)
-{
-    this->generalConstructeur(new NumericValue(min));
-}
-//------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst::StatistiqueMinBornedConst(const std::string nom, const int valeurInitial , const int min)
-    : StatistiqueMinBorned(nom,valeurInitial)
-{
-    this->generalConstructeur(new NumericValue(min));
-}
-//------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst::StatistiqueMinBornedConst(const std::string nom, const double valeurInitial , const double min)
-    : StatistiqueMinBorned(nom,valeurInitial)
-{
-    this->generalConstructeur(new NumericValue(min));
-}
-//------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst::StatistiqueMinBornedConst(const std::string nom, const NumericValue &valeurInitial , const double min)
-    : StatistiqueMinBorned(nom,valeurInitial)
-{
-    this->generalConstructeur(new NumericValue(min));
-}
+StatistiqueMaxBorned::StatistiqueMaxBorned(const std::string nom, const double valeurInitial)
+    : Statistique(nom,valeurInitial) {}
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Destructeur---------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst::~StatistiqueMinBornedConst() throw (){
-    if( minValue != NULL){
-        delete minValue;
-    }
+StatistiqueMaxBorned::~StatistiqueMaxBorned(){
+
 }
 //------------------------------------------------------------------------------------------------------
 //----------------------------------Operator------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-StatistiqueMinBornedConst& StatistiqueMinBornedConst::operator =(const StatistiqueMinBornedConst& stat){
-    if(this != &stat){
-        StatistiqueMinBorned::operator =(stat);
-        (*(this->minValue)) = stat.getMinValue();
-    }
-    return * this;
+StatistiqueMaxBorned& StatistiqueMaxBorned::operator =(const StatistiqueMaxBorned& stat){
+    Statistique::operator =(stat);
+    return *this;
 }
-
 //------------------------------------------------------------------------------------------------------
 //----------------------------------public fonction-----------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-
+void StatistiqueMaxBorned::decreaseStat(const NumericValue &valeur) throw (NoPossibleOperationException){
+    Statistique::decreaseStat(valeur);
+    this->verifBorneMax();
+}
+//------------------------------------------------------------------------------------------------------
+void StatistiqueMaxBorned::increaseStat(const NumericValue &valeur) throw (NoPossibleOperationException){
+    Statistique::increaseStat(valeur);
+    this->verifBorneMax();
+}
 //------------------------------------------------------------------------------------------------------
 //----------------------------------public getter-------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
@@ -93,9 +56,7 @@ StatistiqueMinBornedConst& StatistiqueMinBornedConst::operator =(const Statistiq
 //------------------------------------------------------------------------------------------------------
 //----------------------------------protected getter----------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-const NumericValue& StatistiqueMinBornedConst::getMinValue() const{
-    return * minValue;
-}
+
 
 //------------------------------------------------------------------------------------------------------
 //----------------------------------protected setter----------------------------------------------------
@@ -104,7 +65,12 @@ const NumericValue& StatistiqueMinBornedConst::getMinValue() const{
 //------------------------------------------------------------------------------------------------------
 //----------------------------------private fonction----------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-
+void StatistiqueMaxBorned::verifBorneMax() throw (NoPossibleOperationException){
+    const NumericValue& maxValue = this->getMaxValue();
+    if(this->getValue() > maxValue){
+        this->setValue(maxValue);
+    }
+}
 //------------------------------------------------------------------------------------------------------
 //----------------------------------private getter------------------------------------------------------
 //------------------------------------------------------------------------------------------------------

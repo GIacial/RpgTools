@@ -30,7 +30,12 @@ SOURCES += main.cpp \
     code/Statistique/statistiqueminbornedwithref.cpp \
     code/Statistique/statistiqueminbornedconst.cpp \
     Test/Statistique/test_stat_min_borned_const.cpp \
-    Test/Statistique/test_stat_min_borned_ref.cpp
+    Test/Statistique/test_stat_min_borned_ref.cpp \
+    code/Statistique/statistiquemaxborned.cpp \
+    code/Statistique/statistiquemaxbornedconst.cpp \
+    code/Statistique/statistiquemaxbornedref.cpp \
+    Test/Statistique/test_stat_max_borned_const.cpp \
+    Test/Statistique/test_stat_max_borned_ref.cpp
 
 DISTFILES += \
     CppStructure
@@ -50,4 +55,9 @@ HEADERS += \
     code/Statistique/statistiqueminbornedwithref.h \
     code/Statistique/statistiqueminbornedconst.h \
     Test/Statistique/test_stat_min_borned_const.h \
-    Test/Statistique/test_stat_min_borned_ref.h
+    Test/Statistique/test_stat_min_borned_ref.h \
+    code/Statistique/statistiquemaxborned.h \
+    code/Statistique/statistiquemaxbornedconst.h \
+    code/Statistique/statistiquemaxbornedref.h \
+    Test/Statistique/test_stat_max_borned_const.h \
+    Test/Statistique/test_stat_max_borned_ref.h

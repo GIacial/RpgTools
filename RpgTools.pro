@@ -35,7 +35,11 @@ SOURCES += main.cpp \
     code/Statistique/statistiquemaxbornedconst.cpp \
     code/Statistique/statistiquemaxbornedref.cpp \
     Test/Statistique/test_stat_max_borned_const.cpp \
-    Test/Statistique/test_stat_max_borned_ref.cpp
+    Test/Statistique/test_stat_max_borned_ref.cpp \
+    code/Exception/notsamesizeexception.cpp \
+    code/Exception/not100pourcenttotalexception.cpp \
+    Test/Random/test_randomgenerator.cpp \
+    Test/Random/test_randomcell.cpp
 
 DISTFILES += \
     CppStructure
@@ -60,4 +64,12 @@ HEADERS += \
     code/Statistique/statistiquemaxbornedconst.h \
     code/Statistique/statistiquemaxbornedref.h \
     Test/Statistique/test_stat_max_borned_const.h \
-    Test/Statistique/test_stat_max_borned_ref.h
+    Test/Statistique/test_stat_max_borned_ref.h \
+    code/Random/randomgenerator.h \
+    code/Random/randomcell.h \
+    code/Random/randomgenerator.hpp \
+    code/Random/randomcell.hpp \
+    code/Exception/notsamesizeexception.h \
+    code/Exception/not100pourcenttotalexception.h \
+    Test/Random/test_randomgenerator.h \
+    Test/Random/test_randomcell.h

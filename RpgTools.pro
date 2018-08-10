@@ -67,9 +67,9 @@ HEADERS += \
     Test/Statistique/test_stat_max_borned_ref.h \
     code/Random/randomgenerator.h \
     code/Random/randomcell.h \
-    code/Random/randomgenerator.hpp \
     code/Random/randomcell.hpp \
     code/Exception/notsamesizeexception.h \
     code/Exception/not100pourcenttotalexception.h \
     Test/Random/test_randomgenerator.h \
-    Test/Random/test_randomcell.h
+    Test/Random/test_randomcell.h \
+    code/Random/randomgenerator.hpp

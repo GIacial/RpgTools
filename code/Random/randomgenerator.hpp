@@ -24,12 +24,14 @@ template <typename T> RandomGenerator<T>::RandomGenerator(const std::vector< T *
     //debut du constructeur
     this->cooldownItem = new std::unordered_map< int,std::vector<RandomCell<T>*> >();
     this->items = new std::vector<RandomCell<T>*>();
-    this->listAllItems = new std::vector<RandomCell<T>*>(*(this->items));
+    this->listAllItems = new std::vector<RandomCell<T>*>();
     this->nbTurn = new unsigned long(0);
 
     for(unsigned int i = 0 ; i < pourcentage.size() ; i++){
         if(pourcentage[i] > 0){
-            this->items->push_back(new RandomCell<T>(items[i],pourcentage[i]));
+            RandomCell<T> * cell = new RandomCell<T>(items[i],pourcentage[i]);
+            this->items->push_back(cell);
+            this->listAllItems->push_back(cell);
         }
     }
 }
@@ -77,6 +79,11 @@ template <typename T> RandomGenerator<T>& RandomGenerator<T>::operator =(const R
 //----------------------------------public fonction-----------------------------------------------------
 //------------------------------------------------------------------------------------------------------
 template <typename T> const T&  RandomGenerator<T>::getRandom(){
+
+    //reset si on a fait 100% des tirages
+    if(this->getNbTurn() >= RandomGenerator<T>::CENT_POURCENT){
+        this->reset();
+    }
     //choix de l'item
     int position = 0;
     if(this->getItems().size() > 1){
@@ -86,6 +93,7 @@ template <typename T> const T&  RandomGenerator<T>::getRandom(){
     this->getNbTurn() ++;
 
     const T & result = item->getItem();
+
 
     //vérif du M
     const unsigned long turn = item->getTurn();
@@ -151,6 +159,19 @@ template <typename T> void RandomGenerator<T>::recupCoolDownItem(){
     }
 }
 //------------------------------------------------------------------------------------------------------
+template <typename T> void RandomGenerator<T>::reset(){
+    this->getCooldownItem().clear();
+    std::vector<RandomCell<T>*>& randomItems = this->getItems();
+    randomItems.clear();
+    for(unsigned int i = 0 ; i < listAllItems->size(); i++){
+        RandomCell<T>* cell = listAllItems->at(i);
+        cell->reset();
+        randomItems.push_back(cell);
+
+    }
+    this->getNbTurn() = 0;
+}
+//------------------------------------------------------------------------------------------------------
 //----------------------------------private getter------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
 template <typename T> std::vector<RandomCell<T>*>& RandomGenerator<T>::getItems(){
@@ -167,5 +188,4 @@ template <typename T> unsigned long& RandomGenerator<T>::getNbTurn(){
 //------------------------------------------------------------------------------------------------------
 //----------------------------------private setter------------------------------------------------------
 //------------------------------------------------------------------------------------------------------
-
 #endif // RANDOMGENERATOR_HPP

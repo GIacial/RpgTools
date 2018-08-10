@@ -20,6 +20,7 @@ public:
     const unsigned long& getPourcentageTheorique()const;                                      //donne le pourcentage
     unsigned long getTurn()const;                                      //donne le tour où le pourcentage de pris est inférieur au pourcentage réél
     unsigned long getPourcentageReel(const unsigned long& nbTurn)const;                           //donne le pourcentage reel
+    void reset();                                                                                 //mets le nmbre de prit à 0
 
 protected:
 

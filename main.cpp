@@ -16,7 +16,7 @@
 #include <iostream>
 int main(int argc, char *argv[])
 {
-   //test de valeur
+ /*  //test de valeur
     Test_IntValue               test_int;               QTest::qExec(&test_int,argc,argv);
     Test_PourcentValue          test_pourcent;          QTest::qExec(&test_pourcent,argc,argv);
 
@@ -31,30 +31,32 @@ int main(int argc, char *argv[])
     Test_RandomCell             test_RandomCell;        QTest::qExec(&test_RandomCell,argc,argv);
     Test_RandomGenerator        test_RandomGenerator;   QTest::qExec(&test_RandomGenerator,argc,argv);
 
-
-  /*  std::vector< int*> items;
+*/
+    std::vector< int*> items;
     std::vector< int> chance;
 
     items.push_back(new int(0));
     items.push_back(new int(1));
     items.push_back(new int(2));
+    items.push_back(new int(3));
     chance.push_back(50000);
     chance.push_back(10000);
-    chance.push_back(40000);
+    chance.push_back(39999);
+    chance.push_back(1);
 
     RandomGenerator<int> g(items,chance);
-    const  double multiplicateur = 1.5;
+    const  double multiplicateur = 3.;
     unsigned long nbTirage = multiplicateur * RandomGenerator<int>::CENT_POURCENT;
 
-    std::vector<unsigned long> proba = {0,0,0};
+    std::vector<unsigned long> proba = {0,0,0,0};
     for(unsigned long i = 0 ; i< nbTirage ; i++){
         int r = g.getRandom();
         proba[r] ++;
     }
     for(unsigned int i = 0; i <proba.size() ; i++){
-        proba[i] /= multiplicateur;
-        std::cerr <<"N_EQUI : " << proba[i] << "!=" << chance[i] << std::endl;
-    }*/
+      //  proba[i] /= multiplicateur;
+        std::cerr <<"Proba de "<< i <<" : " << proba[i] << "!=" <<multiplicateur * chance[i] << std::endl;
+    }
 
     return 0;
 }

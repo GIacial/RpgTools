@@ -33,6 +33,7 @@ private:
 
     //fonction
     void recupCoolDownItem();                                                       //remets les items qui on fini leurs cooldoown dans la liste d'item
+    void reset();                                                                   //remets à zero le generateur
 
     //getter
     std::vector<RandomCell<T>* >& getItems();
